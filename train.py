@@ -29,8 +29,8 @@ from utils.evaluation import cal_kl, cal_sim, cal_nss, AverageMeter, compute_cls
 
 parser = argparse.ArgumentParser()
 ##  path
-parser.add_argument('--data_root', type=str, default='/root/autodl-tmp/AGD20K')
-parser.add_argument('--save_root', type=str, default='/root/autodl-tmp/LOCATE-outdir')
+parser.add_argument('--data_root', type=str, default='AGD20K')
+parser.add_argument('--save_root', type=str, default='/mnt/sdb/wyn/autodl-tmp/LOCATE-outdir')
 parser.add_argument("--divide", type=str, default="Seen")
 ##  image
 parser.add_argument('--crop_size', type=int, default=224)
@@ -45,7 +45,7 @@ parser.add_argument('--lr', type=float, default=0.001)
 parser.add_argument('--momentum', type=float, default=0.9)
 parser.add_argument('--weight_decay', type=float, default=5e-4)
 parser.add_argument('--show_step', type=int, default=100)
-parser.add_argument('--gpu', type=str, default='0')
+parser.add_argument('--gpu', type=str, default='3')
 parser.add_argument('--viz', action='store_true', default=False)
 
 #### test
@@ -83,12 +83,12 @@ if not os.path.exists(args.save_path):
     os.makedirs(args.save_path, exist_ok=True)
 dict_args = vars(args)
 
-shutil.copy('/root/autodl-tmp/LOCATE-main/models/locate.py', args.save_path)
-shutil.copy('/root/autodl-tmp/LOCATE-main/train.py', args.save_path)
-shutil.copy('/root/autodl-tmp/LOCATE-main/models/dinov2/models/vision_transformer.py', args.save_path)
-shutil.copy('/root/autodl-tmp/LOCATE-main/data/datatrain.py', args.save_path)
-shutil.copy('/root/autodl-tmp/LOCATE-main/data/datatest.py', args.save_path)
-shutil.copy('/root/autodl-tmp/LOCATE-main/models/dinov2/layers/block.py', args.save_path)
+shutil.copy('models/locate.py', args.save_path)
+shutil.copy('train.py', args.save_path)
+shutil.copy('models/dinov2/models/vision_transformer.py', args.save_path)
+shutil.copy('data/datatrain.py', args.save_path)
+shutil.copy('data/datatest.py', args.save_path)
+shutil.copy('models/dinov2/layers/block.py', args.save_path)
 
 str_1 = ""
 for key, value in dict_args.items():
@@ -209,7 +209,7 @@ if __name__ == '__main__':
         GT_path = args.divide + "_gt.t7"
         if not os.path.exists(GT_path):
             process_gt(args)
-        GT_masks = torch.load(args.divide + "_gt.t7")
+        GT_masks = torch.load(args.divide + "_gt.t7", weights_only=False)
 
         for step, (image, depth_image, label, mask_path, ego_label_name) in enumerate(TestLoader):
             ego_pred = model.test_forward(image.cuda(), depth_image.cuda(), label.long().cuda(), ego_label_name)

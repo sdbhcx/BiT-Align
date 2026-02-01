@@ -10,7 +10,7 @@ from models.dinov2.models import vision_transformer as vits
 from models.dinov2.utils.utils import load_pretrained_weights
 
 import clip
-device = "cuda" if torch.cuda.is_available() else "cpu"
+device = "cuda:3" if torch.cuda.is_available() else "cpu"
 clip_model, clip_preprocess = clip.load("ViT-B/32", device=device)
 
 
@@ -91,7 +91,7 @@ class Net(nn.Module):
 
         self.temperature = 0.1
         
-        self.vit_model = torch.hub.load('/root/autodl-tmp/LOCATE-main/models/dinov2', 'dinov2_vits14',source='local')
+        self.vit_model = torch.hub.load('./models/dinov2', 'dinov2_vits14', source='local')
         for name, param in self.vit_model.named_parameters():
             if "mpg_" in name:
                 param.requires_grad = True
@@ -165,11 +165,12 @@ class Net(nn.Module):
         exo_desc = exo_list['x_norm_patchtokens'].detach()  
         ego_attn = ego_list['x_attention']#torch.Size([16, 6, 257, 257])
         
+        # 升维操作 384 -> 384 * 4
         ego_proj = self.aff_proj(ego_desc)
         exo_proj = self.aff_proj(exo_desc)
 
 
-        
+        # 特征重塑，一维补丁序列转化为二维空间特征 [B, C, H, W]
         ego_desc = self._reshape_transform(ego_desc, self.patch, self.stride)
         exo_desc = self._reshape_transform(exo_desc, self.patch, self.stride)
         ego_proj = self._reshape_transform(ego_proj, self.patch, self.stride)
@@ -178,6 +179,7 @@ class Net(nn.Module):
         pre_ego = ego_proj
         image_features, ego_proj, image_features_attn  = self.ego_self_attention(ego_proj)
 
+        # L2范数归一化操作
         image_features = F.normalize(image_features, dim=1, p=2)
         text_features = F.normalize(text_features, dim=1, p=2)
 
@@ -185,27 +187,36 @@ class Net(nn.Module):
 
         #------clip_ego - fusion branch ------#
 
+        # 对数空间到线性空间的缩放转换，用于调整图像-文本特征相似度的缩放因子
         logit_scale = self.logit_scale.exp()
+        # 计算缩放后的图像-文本相似度
         similarity_matrix = logit_scale * image_features @ text_features.t()
         text_f = torch.ones((b, 384)).cuda()
         for i in range(b):
             text_f[i] = text_features[aff_label[i]]
         
         att_egoproj = F.normalize(ego_proj, dim=1, p=2)
+        # [C, B, 1]
         attego = logit_scale *att_egoproj.permute(1, 0, 2)@text_f.unsqueeze(2)
         attego = torch.sigmoid(F.normalize(attego, dim=1, p=2)).permute(1, 0, 2).repeat(1, 1, c)
+        # [B, C, H, W]
         ego_proj = attego.permute(1, 2, 0).view(b, c, h, w)*pre_ego + pre_ego 
 
         
         #------- ego attention--------#
-
+        # 图像特征注意力图处理 image_features_attn（来自 self.ego_self_attention 的注意力图）
+        # 提取第0个注意力头的特征，去除CLS token（从1开始）
+        # 塑为空间维度 [批次大小, 高度, 宽度]
         image_features_attn = image_features_attn[:, 0, 1:].reshape(b, h, w)
+        # 根据每个样本的平均注意力值进行二值化（大于均值为1，否则为0）
         image_features_attn = (image_features_attn > image_features_attn.flatten(-2, -1).mean(-1, keepdim=True).unsqueeze(-1)).float()
 
         ######b, c, h, w = ego_desc.shape
+        # ego_attn（来自ViT模型的注意力图） -> 多头注意力掩码集合
         ego_cls_attn = ego_attn[:, :, 0, 1:].reshape(b, ego_attn.size(1), h, w) #b*c*h*w 
         ego_cls_attn = (ego_cls_attn > ego_cls_attn.flatten(-2, -1).mean(-1, keepdim=True).unsqueeze(-1)).float()
 ##-------------------------------------------------------------------------- 
+        # 对每个注意力头进行min-max归一化,确保注意力值在[0, 1]范围内，便于后续处理
         ego_samss = ego_cls_attn
         head_num = ego_samss.size(1)
         for head in range(head_num):
@@ -230,18 +241,25 @@ class Net(nn.Module):
 
 
         # --- Affordance CAM generation --- #
+        # CAM（类别激活映射，Class Activation Mapping）是一种可视化技术，用于理解深度学习模型（特别是卷积神经网络）在进行分类预测时关注图像的哪些区域。
+        # 它通过生成热力图的方式，直观地展示图像中每个像素区域对特定类别的贡献程度。
         exo_proj = self.aff_exo_proj(exo_proj)
         aff_cam = self.aff_fc(exo_proj)  # b*num_exo x 36 x h x w
         aff_logits = self.gap(aff_cam).reshape(b, num_exo, self.aff_classes)
-        aff_cam_re = aff_cam.reshape(b, num_exo, self.aff_classes, h, w)
 
+        # 重塑CAM为 [批次大小, 外中心图像数, 类别数, 高度, 宽度]
+        # 为每个样本提取真实类别对应的CAM
+        # 输出：每个样本和外中心图像的真实类别激活图
+        aff_cam_re = aff_cam.reshape(b, num_exo, self.aff_classes, h, w)
         gt_aff_cam = torch.zeros(b, num_exo, h, w).cuda()
         for b_ in range(b):
             gt_aff_cam[b_, :] = aff_cam_re[b_, :, aff_label[b_]]
 
         # --- Clustering extracted descriptors based on CAM --- #
+        # 特征扁平化处理 将2D空间特征转换为1D序列，便于后续的聚类和相似度计算
         ego_desc_flat = ego_desc.flatten(-2, -1)  # b x 384 x hw
         exo_desc_re_flat = exo_desc.reshape(b, num_exo, c, h, w).flatten(-2, -1)
+        # 初始化聚类相关的输出变量
         sim_maps = torch.zeros(b, self.cluster_num, h * w).cuda()
         exo_sim_maps = torch.zeros(b, num_exo, self.cluster_num, h * w).cuda()
         part_score = torch.zeros(b, self.cluster_num).cuda()
@@ -264,19 +282,24 @@ class Net(nn.Module):
             kmeans.fit_predict(exo_aff_desc.contiguous())
             clu_cens = F.normalize(kmeans.centroids, dim=1)
 
+            # 生成外中心图像与聚类中心的相似度图
             # save the exocentric similarity maps for visualization in training
             for n_ in range(num_exo):
                 exo_sim_maps[b_, n_] = torch.mm(clu_cens, F.normalize(exo_desc_re_flat[b_, n_], dim=0))
 
+            # 生成自中心图像与聚类中心的相似度图
             # find object part prototypes and background prototypes
             sim_map = torch.mm(clu_cens, F.normalize(ego_desc_flat[b_], dim=0))  # self.cluster_num x hw
+            # 归一化相似度图
             tmp_sim_max, tmp_sim_min = torch.max(sim_map, dim=-1, keepdim=True)[0], \
                                        torch.min(sim_map, dim=-1, keepdim=True)[0]
             sim_map_norm = (sim_map - tmp_sim_min) / (tmp_sim_max - tmp_sim_min + 1e-12)
-
+            
+            # 生成硬掩码
             sim_map_hard = (sim_map_norm > torch.mean(sim_map_norm, 1, keepdim=True)).float()
             sam_hard = (ego_sam_flat > torch.mean(ego_sam_flat, 1, keepdim=True)).float()
-
+            
+            # 计算交并比相关分数
             inter = (sim_map_hard * sam_hard[b_]).sum(1)
             union = sim_map_hard.sum(1) + sam_hard[b_].sum() - inter
             p_score = (inter / sim_map_hard.sum(1) + sam_hard[b_].sum() / union) / 2
@@ -297,7 +320,7 @@ class Net(nn.Module):
 
 
         # --- contrastive loss --- #
-
+        # 基于CLIP的图像-文本对比学习损失
         loss_contra = torch.zeros(1).cuda()
         temperature = 0.5  
         clip_logits = similarity_matrix / temperature
@@ -315,6 +338,7 @@ class Net(nn.Module):
         loss_con /= b
 
         # --- prototype guidance loss --- #
+        # 原型引导损失（Prototype Guidance Loss）是模型中语义特征对齐与结构化学习的关键组成部分
         loss_proto = torch.zeros(1).cuda()
         valid_batch = 0
         if epoch[0] > epoch[1]:

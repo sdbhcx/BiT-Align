@@ -16,3 +16,6 @@ __pycache__/
 nosetests.xml
 coverage.xml
 .env
+
+AGD20K/
+AGD20K-Depth/
