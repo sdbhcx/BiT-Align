@@ -1,0 +1,269 @@
+/mnt/sdb/wyn/BiT-Align/models/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/mnt/sdb/wyn/BiT-Align/models/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/mnt/sdb/wyn/BiT-Align/models/dinov2/layers/block.py:41: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+/home/wyn/.conda/envs/clip-env/lib/python3.10/site-packages/clip/clip.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+data_root=AGD20K
+save_root=/mnt/sdb/wyn/autodl-tmp/LOCATE-outdir
+divide=Seen
+crop_size=224
+resize_size=256
+num_workers=8
+batch_size=16
+warm_epoch=0
+epochs=15
+lr=0.001
+momentum=0.9
+weight_decay=0.0005
+show_step=100
+gpu=3
+viz=False
+test_batch_size=1
+test_num_workers=8
+num_classes=36
+exocentric_root=AGD20K/Seen/trainset/exocentric
+egocentric_root=AGD20K/Seen/trainset/egocentric
+test_root=AGD20K/Seen/testset/egocentric
+mask_root=AGD20K/Seen/testset/GT
+save_path=/mnt/sdb/wyn/autodl-tmp/LOCATE-outdir/20260130_224459
+
+using MLP layer as FFN
+Total parameters: 29765317
+Trainable parameters: 7708741
+Frozen parameters: 22056576
+Train begining!------DINO V2
+LR = [0.001, 0.002, 0.01, 0.02, 0.02]
+/mnt/sdb/wyn/BiT-Align/train.py:195: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  log_str += ' | '.join(['%s: %.3f' % (k, v) for k, v in loss_dict.items()])
+torch.Size([36, 512])
+['a good photo of beat', 'a good photo of boxing', 'a good photo of brush with', 'a good photo of carry', 'a good photo of catch', 'a good photo of cut', 'a good photo of cut with', 'a good photo of drag', 'a good photo of drink with', 'a good photo of eat', 'a good photo of hit', 'a good photo of hold', 'a good photo of jump', 'a good photo of kick', 'a good photo of lie on', 'a good photo of lift', 'a good photo of look out', 'a good photo of open', 'a good photo of pack', 'a good photo of peel', 'a good photo of pick up', 'a good photo of pour', 'a good photo of push', 'a good photo of ride', 'a good photo of sip', 'a good photo of sit on', 'a good photo of stick', 'a good photo of stir', 'a good photo of swing', 'a good photo of take photo', 'a good photo of talk on', 'a good photo of text on', 'a good photo of throw', 'a good photo of type on', 'a good photo of wash', 'a good photo of write']
+epoch: 1/15 + 100/1254 | exo_aff_acc: 45.875 | ego_ce: 1.496 | exo_ce: 1.259 | con_loss: 0.000 | loss_cen: 0.047 | loss_contra: 3.217
+epoch: 1/15 + 200/1254 | exo_aff_acc: 49.531 | ego_ce: 0.795 | exo_ce: 1.166 | con_loss: 0.000 | loss_cen: 0.046 | loss_contra: 3.242
+epoch: 1/15 + 300/1254 | exo_aff_acc: 51.917 | ego_ce: 1.728 | exo_ce: 1.675 | con_loss: 0.000 | loss_cen: 0.045 | loss_contra: 3.244
+epoch: 1/15 + 400/1254 | exo_aff_acc: 53.531 | ego_ce: 0.984 | exo_ce: 1.176 | con_loss: 0.000 | loss_cen: 0.045 | loss_contra: 3.165
+epoch: 1/15 + 500/1254 | exo_aff_acc: 54.525 | ego_ce: 0.992 | exo_ce: 1.311 | con_loss: 0.000 | loss_cen: 0.045 | loss_contra: 3.173
+epoch: 1/15 + 600/1254 | exo_aff_acc: 55.448 | ego_ce: 0.904 | exo_ce: 1.193 | con_loss: 0.000 | loss_cen: 0.045 | loss_contra: 3.157
+epoch: 1/15 + 700/1254 | exo_aff_acc: 56.330 | ego_ce: 1.343 | exo_ce: 1.306 | con_loss: 0.000 | loss_cen: 0.044 | loss_contra: 3.326
+epoch: 1/15 + 800/1254 | exo_aff_acc: 56.891 | ego_ce: 0.396 | exo_ce: 0.584 | con_loss: 0.000 | loss_cen: 0.044 | loss_contra: 3.123
+epoch: 1/15 + 900/1254 | exo_aff_acc: 57.382 | ego_ce: 1.025 | exo_ce: 1.205 | con_loss: 0.000 | loss_cen: 0.043 | loss_contra: 3.283
+epoch: 1/15 + 1000/1254 | exo_aff_acc: 58.006 | ego_ce: 1.535 | exo_ce: 1.201 | con_loss: 0.000 | loss_cen: 0.043 | loss_contra: 3.300
+epoch: 1/15 + 1100/1254 | exo_aff_acc: 58.381 | ego_ce: 1.200 | exo_ce: 1.141 | con_loss: 0.000 | loss_cen: 0.043 | loss_contra: 3.232
+epoch: 1/15 + 1200/1254 | exo_aff_acc: 58.703 | ego_ce: 1.284 | exo_ce: 1.127 | con_loss: 0.000 | loss_cen: 0.043 | loss_contra: 3.575
+head count: tensor([3186, 1870, 3470, 6744, 2067, 2724])
+/mnt/sdb/wyn/BiT-Align/train.py:217: DeprecationWarning: __array__ implementation doesn't accept a copy keyword, so passing copy=False failed. __array__ must implement 'dtype' and 'copy' keyword arguments.
+  ego_pred = np.array(ego_pred.squeeze().data.cpu())
+epoch=1 mKLD = 1.419 mSIM = 0.334 mNSS = 1.133 bestKLD = 1000
+LR = [0.001, 0.002, 0.01, 0.02, 0.02]
+epoch: 2/15 + 100/1254 | exo_aff_acc: 61.875 | ego_ce: 0.946 | exo_ce: 0.949 | con_loss: 0.186 | loss_cen: 0.042 | loss_contra: 3.389
+epoch: 2/15 + 200/1254 | exo_aff_acc: 62.812 | ego_ce: 0.843 | exo_ce: 0.725 | con_loss: 0.097 | loss_cen: 0.042 | loss_contra: 3.293
+epoch: 2/15 + 300/1254 | exo_aff_acc: 62.833 | ego_ce: 0.865 | exo_ce: 1.199 | con_loss: 0.099 | loss_cen: 0.041 | loss_contra: 3.370
+epoch: 2/15 + 400/1254 | exo_aff_acc: 63.344 | ego_ce: 1.085 | exo_ce: 1.133 | con_loss: 0.115 | loss_cen: 0.043 | loss_contra: 3.508
+epoch: 2/15 + 500/1254 | exo_aff_acc: 63.600 | ego_ce: 1.253 | exo_ce: 1.028 | con_loss: 0.212 | loss_cen: 0.042 | loss_contra: 3.175
+epoch: 2/15 + 600/1254 | exo_aff_acc: 63.781 | ego_ce: 0.961 | exo_ce: 0.965 | con_loss: 0.185 | loss_cen: 0.041 | loss_contra: 3.481
+epoch: 2/15 + 700/1254 | exo_aff_acc: 63.777 | ego_ce: 0.988 | exo_ce: 1.114 | con_loss: 0.164 | loss_cen: 0.041 | loss_contra: 3.256
+epoch: 2/15 + 800/1254 | exo_aff_acc: 64.211 | ego_ce: 1.259 | exo_ce: 0.945 | con_loss: 0.199 | loss_cen: 0.041 | loss_contra: 3.362
+epoch: 2/15 + 900/1254 | exo_aff_acc: 64.208 | ego_ce: 1.052 | exo_ce: 1.020 | con_loss: 0.259 | loss_cen: 0.041 | loss_contra: 3.214
+epoch: 2/15 + 1000/1254 | exo_aff_acc: 64.263 | ego_ce: 0.954 | exo_ce: 0.828 | con_loss: 0.188 | loss_cen: 0.040 | loss_contra: 3.329
+epoch: 2/15 + 1100/1254 | exo_aff_acc: 64.364 | ego_ce: 0.825 | exo_ce: 0.973 | con_loss: 0.199 | loss_cen: 0.040 | loss_contra: 3.182
+epoch: 2/15 + 1200/1254 | exo_aff_acc: 64.500 | ego_ce: 1.120 | exo_ce: 0.818 | con_loss: 0.141 | loss_cen: 0.040 | loss_contra: 3.224
+head count: tensor([2736, 1155, 2823, 9772, 2177, 1398])
+epoch=2 mKLD = 1.263 mSIM = 0.368 mNSS = 1.268 bestKLD = 1.419
+LR = [0.001, 0.002, 0.01, 0.02, 0.02]
+epoch: 3/15 + 100/1254 | exo_aff_acc: 66.125 | ego_ce: 1.039 | exo_ce: 0.765 | con_loss: 0.175 | loss_cen: 0.041 | loss_contra: 3.202
+epoch: 3/15 + 200/1254 | exo_aff_acc: 66.688 | ego_ce: 0.988 | exo_ce: 0.860 | con_loss: 0.297 | loss_cen: 0.042 | loss_contra: 3.188
+epoch: 3/15 + 300/1254 | exo_aff_acc: 66.854 | ego_ce: 0.962 | exo_ce: 1.013 | con_loss: 0.181 | loss_cen: 0.041 | loss_contra: 3.262
+epoch: 3/15 + 400/1254 | exo_aff_acc: 66.844 | ego_ce: 0.800 | exo_ce: 0.769 | con_loss: 0.179 | loss_cen: 0.040 | loss_contra: 3.176
+epoch: 3/15 + 500/1254 | exo_aff_acc: 66.838 | ego_ce: 0.713 | exo_ce: 0.988 | con_loss: 0.202 | loss_cen: 0.040 | loss_contra: 3.356
+epoch: 3/15 + 600/1254 | exo_aff_acc: 66.823 | ego_ce: 0.438 | exo_ce: 0.756 | con_loss: 0.178 | loss_cen: 0.040 | loss_contra: 3.092
+epoch: 3/15 + 700/1254 | exo_aff_acc: 66.562 | ego_ce: 0.683 | exo_ce: 0.977 | con_loss: 0.242 | loss_cen: 0.040 | loss_contra: 3.313
+epoch: 3/15 + 800/1254 | exo_aff_acc: 66.477 | ego_ce: 0.933 | exo_ce: 0.956 | con_loss: 0.185 | loss_cen: 0.040 | loss_contra: 3.430
+epoch: 3/15 + 900/1254 | exo_aff_acc: 66.472 | ego_ce: 0.695 | exo_ce: 1.020 | con_loss: 0.136 | loss_cen: 0.038 | loss_contra: 3.153
+epoch: 3/15 + 1000/1254 | exo_aff_acc: 66.294 | ego_ce: 0.877 | exo_ce: 0.778 | con_loss: 0.228 | loss_cen: 0.039 | loss_contra: 3.076
+epoch: 3/15 + 1100/1254 | exo_aff_acc: 66.568 | ego_ce: 0.893 | exo_ce: 0.834 | con_loss: 0.134 | loss_cen: 0.040 | loss_contra: 3.424
+epoch: 3/15 + 1200/1254 | exo_aff_acc: 66.589 | ego_ce: 1.194 | exo_ce: 0.817 | con_loss: 0.097 | loss_cen: 0.038 | loss_contra: 3.199
+head count: tensor([ 2523,  1358,  2121, 10874,  2114,  1071])
+epoch=3 mKLD = 1.205 mSIM = 0.384 mNSS = 1.301 bestKLD = 1.263
+LR = [0.001, 0.002, 0.01, 0.02, 0.02]
+epoch: 4/15 + 100/1254 | exo_aff_acc: 67.312 | ego_ce: 1.311 | exo_ce: 0.912 | con_loss: 0.213 | loss_cen: 0.039 | loss_contra: 3.172
+epoch: 4/15 + 200/1254 | exo_aff_acc: 67.531 | ego_ce: 0.890 | exo_ce: 0.756 | con_loss: 0.169 | loss_cen: 0.039 | loss_contra: 3.103
+epoch: 4/15 + 300/1254 | exo_aff_acc: 67.521 | ego_ce: 0.591 | exo_ce: 0.611 | con_loss: 0.165 | loss_cen: 0.038 | loss_contra: 3.138
+epoch: 4/15 + 400/1254 | exo_aff_acc: 67.734 | ego_ce: 0.744 | exo_ce: 0.605 | con_loss: 0.104 | loss_cen: 0.038 | loss_contra: 3.367
+epoch: 4/15 + 500/1254 | exo_aff_acc: 67.963 | ego_ce: 0.812 | exo_ce: 0.802 | con_loss: 0.149 | loss_cen: 0.040 | loss_contra: 3.088
+epoch: 4/15 + 600/1254 | exo_aff_acc: 68.208 | ego_ce: 0.898 | exo_ce: 0.982 | con_loss: 0.118 | loss_cen: 0.037 | loss_contra: 3.266
+epoch: 4/15 + 700/1254 | exo_aff_acc: 68.304 | ego_ce: 0.947 | exo_ce: 1.067 | con_loss: 0.204 | loss_cen: 0.037 | loss_contra: 3.084
+epoch: 4/15 + 800/1254 | exo_aff_acc: 68.203 | ego_ce: 1.125 | exo_ce: 1.130 | con_loss: 0.216 | loss_cen: 0.038 | loss_contra: 3.227
+epoch: 4/15 + 900/1254 | exo_aff_acc: 68.264 | ego_ce: 1.608 | exo_ce: 1.394 | con_loss: 0.124 | loss_cen: 0.038 | loss_contra: 3.624
+epoch: 4/15 + 1000/1254 | exo_aff_acc: 68.350 | ego_ce: 0.640 | exo_ce: 0.600 | con_loss: 0.182 | loss_cen: 0.037 | loss_contra: 3.013
+epoch: 4/15 + 1100/1254 | exo_aff_acc: 68.352 | ego_ce: 1.023 | exo_ce: 0.778 | con_loss: 0.194 | loss_cen: 0.037 | loss_contra: 3.291
+epoch: 4/15 + 1200/1254 | exo_aff_acc: 68.370 | ego_ce: 0.980 | exo_ce: 0.629 | con_loss: 0.180 | loss_cen: 0.037 | loss_contra: 3.141
+head count: tensor([ 2337,  1249,  2085, 11308,  1865,  1217])
+epoch=4 mKLD = 1.167 mSIM = 0.397 mNSS = 1.315 bestKLD = 1.205
+LR = [0.001, 0.002, 0.01, 0.02, 0.02]
+epoch: 5/15 + 100/1254 | exo_aff_acc: 68.688 | ego_ce: 1.071 | exo_ce: 0.778 | con_loss: 0.230 | loss_cen: 0.037 | loss_contra: 3.274
+epoch: 5/15 + 200/1254 | exo_aff_acc: 68.625 | ego_ce: 0.968 | exo_ce: 0.730 | con_loss: 0.181 | loss_cen: 0.036 | loss_contra: 3.180
+epoch: 5/15 + 300/1254 | exo_aff_acc: 68.583 | ego_ce: 1.182 | exo_ce: 1.177 | con_loss: 0.241 | loss_cen: 0.036 | loss_contra: 3.266
+epoch: 5/15 + 400/1254 | exo_aff_acc: 68.453 | ego_ce: 0.841 | exo_ce: 0.603 | con_loss: 0.187 | loss_cen: 0.036 | loss_contra: 3.193
+epoch: 5/15 + 500/1254 | exo_aff_acc: 68.575 | ego_ce: 0.889 | exo_ce: 0.734 | con_loss: 0.210 | loss_cen: 0.036 | loss_contra: 3.259
+epoch: 5/15 + 600/1254 | exo_aff_acc: 68.500 | ego_ce: 0.699 | exo_ce: 0.601 | con_loss: 0.138 | loss_cen: 0.035 | loss_contra: 3.218
+epoch: 5/15 + 700/1254 | exo_aff_acc: 68.714 | ego_ce: 0.754 | exo_ce: 0.636 | con_loss: 0.198 | loss_cen: 0.037 | loss_contra: 3.275
+epoch: 5/15 + 800/1254 | exo_aff_acc: 68.633 | ego_ce: 1.036 | exo_ce: 0.781 | con_loss: 0.141 | loss_cen: 0.037 | loss_contra: 3.262
+epoch: 5/15 + 900/1254 | exo_aff_acc: 68.597 | ego_ce: 1.549 | exo_ce: 1.189 | con_loss: 0.201 | loss_cen: 0.036 | loss_contra: 3.268
+epoch: 5/15 + 1000/1254 | exo_aff_acc: 68.550 | ego_ce: 0.665 | exo_ce: 0.666 | con_loss: 0.173 | loss_cen: 0.038 | loss_contra: 3.234
+epoch: 5/15 + 1100/1254 | exo_aff_acc: 68.761 | ego_ce: 0.815 | exo_ce: 0.693 | con_loss: 0.150 | loss_cen: 0.037 | loss_contra: 3.341
+epoch: 5/15 + 1200/1254 | exo_aff_acc: 68.932 | ego_ce: 1.279 | exo_ce: 1.014 | con_loss: 0.189 | loss_cen: 0.037 | loss_contra: 3.335
+head count: tensor([ 1716,  1743,  1951, 11617,  1895,  1139])
+epoch=5 mKLD = 1.157 mSIM = 0.401 mNSS = 1.317 bestKLD = 1.167
+LR = [0.0001, 0.0002, 0.001, 0.002, 0.002]
+epoch: 6/15 + 100/1254 | exo_aff_acc: 71.812 | ego_ce: 0.846 | exo_ce: 0.776 | con_loss: 0.223 | loss_cen: 0.034 | loss_contra: 3.292
+epoch: 6/15 + 200/1254 | exo_aff_acc: 71.625 | ego_ce: 0.718 | exo_ce: 0.400 | con_loss: 0.192 | loss_cen: 0.035 | loss_contra: 3.106
+epoch: 6/15 + 300/1254 | exo_aff_acc: 71.417 | ego_ce: 0.989 | exo_ce: 0.614 | con_loss: 0.139 | loss_cen: 0.036 | loss_contra: 3.346
+epoch: 6/15 + 400/1254 | exo_aff_acc: 71.281 | ego_ce: 0.676 | exo_ce: 0.659 | con_loss: 0.161 | loss_cen: 0.034 | loss_contra: 3.158
+epoch: 6/15 + 500/1254 | exo_aff_acc: 71.600 | ego_ce: 0.959 | exo_ce: 0.648 | con_loss: 0.162 | loss_cen: 0.033 | loss_contra: 3.177
+epoch: 6/15 + 600/1254 | exo_aff_acc: 71.990 | ego_ce: 1.087 | exo_ce: 0.592 | con_loss: 0.213 | loss_cen: 0.037 | loss_contra: 3.024
+epoch: 6/15 + 700/1254 | exo_aff_acc: 72.009 | ego_ce: 0.695 | exo_ce: 0.531 | con_loss: 0.197 | loss_cen: 0.035 | loss_contra: 3.217
+epoch: 6/15 + 800/1254 | exo_aff_acc: 72.203 | ego_ce: 0.875 | exo_ce: 0.785 | con_loss: 0.190 | loss_cen: 0.035 | loss_contra: 3.307
+epoch: 6/15 + 900/1254 | exo_aff_acc: 72.264 | ego_ce: 0.680 | exo_ce: 0.564 | con_loss: 0.190 | loss_cen: 0.036 | loss_contra: 2.996
+epoch: 6/15 + 1000/1254 | exo_aff_acc: 72.031 | ego_ce: 0.999 | exo_ce: 0.685 | con_loss: 0.124 | loss_cen: 0.035 | loss_contra: 3.361
+epoch: 6/15 + 1100/1254 | exo_aff_acc: 72.119 | ego_ce: 0.848 | exo_ce: 0.638 | con_loss: 0.174 | loss_cen: 0.036 | loss_contra: 3.232
+epoch: 6/15 + 1200/1254 | exo_aff_acc: 71.984 | ego_ce: 1.045 | exo_ce: 0.803 | con_loss: 0.165 | loss_cen: 0.035 | loss_contra: 3.331
+head count: tensor([ 1376,  1136,  1762, 13377,  1383,  1027])
+epoch=6 mKLD = 1.151 mSIM = 0.403 mNSS = 1.317 bestKLD = 1.157
+LR = [0.0001, 0.0002, 0.001, 0.002, 0.002]
+epoch: 7/15 + 100/1254 | exo_aff_acc: 72.938 | ego_ce: 0.810 | exo_ce: 0.663 | con_loss: 0.157 | loss_cen: 0.034 | loss_contra: 3.149
+epoch: 7/15 + 200/1254 | exo_aff_acc: 73.156 | ego_ce: 0.808 | exo_ce: 0.549 | con_loss: 0.214 | loss_cen: 0.034 | loss_contra: 3.185
+epoch: 7/15 + 300/1254 | exo_aff_acc: 73.229 | ego_ce: 1.019 | exo_ce: 0.724 | con_loss: 0.194 | loss_cen: 0.037 | loss_contra: 3.429
+epoch: 7/15 + 400/1254 | exo_aff_acc: 72.812 | ego_ce: 0.884 | exo_ce: 0.745 | con_loss: 0.166 | loss_cen: 0.035 | loss_contra: 3.207
+epoch: 7/15 + 500/1254 | exo_aff_acc: 73.175 | ego_ce: 0.792 | exo_ce: 0.582 | con_loss: 0.251 | loss_cen: 0.037 | loss_contra: 3.146
+epoch: 7/15 + 600/1254 | exo_aff_acc: 73.240 | ego_ce: 0.834 | exo_ce: 0.799 | con_loss: 0.207 | loss_cen: 0.036 | loss_contra: 3.389
+epoch: 7/15 + 700/1254 | exo_aff_acc: 73.196 | ego_ce: 0.575 | exo_ce: 0.323 | con_loss: 0.142 | loss_cen: 0.034 | loss_contra: 2.966
+epoch: 7/15 + 800/1254 | exo_aff_acc: 73.156 | ego_ce: 0.933 | exo_ce: 0.582 | con_loss: 0.203 | loss_cen: 0.035 | loss_contra: 3.218
+epoch: 7/15 + 900/1254 | exo_aff_acc: 72.986 | ego_ce: 0.712 | exo_ce: 0.594 | con_loss: 0.185 | loss_cen: 0.036 | loss_contra: 3.305
+epoch: 7/15 + 1000/1254 | exo_aff_acc: 72.912 | ego_ce: 1.012 | exo_ce: 0.623 | con_loss: 0.202 | loss_cen: 0.035 | loss_contra: 3.240
+epoch: 7/15 + 1100/1254 | exo_aff_acc: 73.017 | ego_ce: 0.692 | exo_ce: 0.447 | con_loss: 0.199 | loss_cen: 0.034 | loss_contra: 3.190
+epoch: 7/15 + 1200/1254 | exo_aff_acc: 73.021 | ego_ce: 0.698 | exo_ce: 0.687 | con_loss: 0.247 | loss_cen: 0.038 | loss_contra: 3.194
+head count: tensor([ 1492,  1272,  1935, 12841,  1375,  1146])
+epoch=7 mKLD = 1.151 mSIM = 0.404 mNSS = 1.318 bestKLD = 1.151
+LR = [0.0001, 0.0002, 0.001, 0.002, 0.002]
+epoch: 8/15 + 100/1254 | exo_aff_acc: 73.625 | ego_ce: 0.767 | exo_ce: 0.739 | con_loss: 0.263 | loss_cen: 0.037 | loss_contra: 3.143
+epoch: 8/15 + 200/1254 | exo_aff_acc: 74.312 | ego_ce: 0.714 | exo_ce: 0.489 | con_loss: 0.141 | loss_cen: 0.033 | loss_contra: 3.235
+epoch: 8/15 + 300/1254 | exo_aff_acc: 74.271 | ego_ce: 0.975 | exo_ce: 0.619 | con_loss: 0.269 | loss_cen: 0.037 | loss_contra: 3.307
+epoch: 8/15 + 400/1254 | exo_aff_acc: 74.125 | ego_ce: 0.582 | exo_ce: 0.660 | con_loss: 0.098 | loss_cen: 0.035 | loss_contra: 3.266
+epoch: 8/15 + 500/1254 | exo_aff_acc: 74.075 | ego_ce: 0.653 | exo_ce: 0.617 | con_loss: 0.202 | loss_cen: 0.035 | loss_contra: 3.098
+epoch: 8/15 + 600/1254 | exo_aff_acc: 73.844 | ego_ce: 0.843 | exo_ce: 0.743 | con_loss: 0.216 | loss_cen: 0.035 | loss_contra: 3.293
+epoch: 8/15 + 700/1254 | exo_aff_acc: 73.411 | ego_ce: 0.664 | exo_ce: 0.654 | con_loss: 0.146 | loss_cen: 0.035 | loss_contra: 3.221
+epoch: 8/15 + 800/1254 | exo_aff_acc: 73.227 | ego_ce: 0.971 | exo_ce: 0.749 | con_loss: 0.275 | loss_cen: 0.036 | loss_contra: 3.315
+epoch: 8/15 + 900/1254 | exo_aff_acc: 72.986 | ego_ce: 0.960 | exo_ce: 0.715 | con_loss: 0.158 | loss_cen: 0.038 | loss_contra: 3.368
+epoch: 8/15 + 1000/1254 | exo_aff_acc: 73.000 | ego_ce: 0.789 | exo_ce: 0.545 | con_loss: 0.247 | loss_cen: 0.035 | loss_contra: 3.176
+epoch: 8/15 + 1100/1254 | exo_aff_acc: 72.824 | ego_ce: 0.916 | exo_ce: 0.792 | con_loss: 0.129 | loss_cen: 0.036 | loss_contra: 3.158
+epoch: 8/15 + 1200/1254 | exo_aff_acc: 72.771 | ego_ce: 0.567 | exo_ce: 0.441 | con_loss: 0.144 | loss_cen: 0.034 | loss_contra: 3.183
+head count: tensor([ 1574,  1242,  1876, 12945,  1341,  1083])
+epoch=8 mKLD = 1.153 mSIM = 0.403 mNSS = 1.314 bestKLD = 1.151
+LR = [0.0001, 0.0002, 0.001, 0.002, 0.002]
+epoch: 9/15 + 100/1254 | exo_aff_acc: 73.375 | ego_ce: 1.200 | exo_ce: 0.997 | con_loss: 0.283 | loss_cen: 0.036 | loss_contra: 3.280
+epoch: 9/15 + 200/1254 | exo_aff_acc: 74.031 | ego_ce: 0.753 | exo_ce: 0.734 | con_loss: 0.189 | loss_cen: 0.039 | loss_contra: 3.255
+epoch: 9/15 + 300/1254 | exo_aff_acc: 74.125 | ego_ce: 0.709 | exo_ce: 0.403 | con_loss: 0.247 | loss_cen: 0.036 | loss_contra: 3.156
+epoch: 9/15 + 400/1254 | exo_aff_acc: 73.734 | ego_ce: 1.170 | exo_ce: 0.498 | con_loss: 0.172 | loss_cen: 0.035 | loss_contra: 3.527
+epoch: 9/15 + 500/1254 | exo_aff_acc: 73.537 | ego_ce: 0.662 | exo_ce: 0.652 | con_loss: 0.220 | loss_cen: 0.035 | loss_contra: 3.139
+epoch: 9/15 + 600/1254 | exo_aff_acc: 73.500 | ego_ce: 0.749 | exo_ce: 0.680 | con_loss: 0.206 | loss_cen: 0.035 | loss_contra: 3.209
+epoch: 9/15 + 700/1254 | exo_aff_acc: 73.455 | ego_ce: 0.570 | exo_ce: 0.434 | con_loss: 0.161 | loss_cen: 0.035 | loss_contra: 3.045
+epoch: 9/15 + 800/1254 | exo_aff_acc: 73.422 | ego_ce: 0.740 | exo_ce: 0.673 | con_loss: 0.153 | loss_cen: 0.035 | loss_contra: 3.277
+epoch: 9/15 + 900/1254 | exo_aff_acc: 73.514 | ego_ce: 0.708 | exo_ce: 0.619 | con_loss: 0.149 | loss_cen: 0.034 | loss_contra: 3.094
+epoch: 9/15 + 1000/1254 | exo_aff_acc: 73.463 | ego_ce: 0.841 | exo_ce: 0.707 | con_loss: 0.273 | loss_cen: 0.036 | loss_contra: 3.197
+epoch: 9/15 + 1100/1254 | exo_aff_acc: 73.432 | ego_ce: 0.899 | exo_ce: 0.551 | con_loss: 0.169 | loss_cen: 0.034 | loss_contra: 3.169
+epoch: 9/15 + 1200/1254 | exo_aff_acc: 73.453 | ego_ce: 0.596 | exo_ce: 0.461 | con_loss: 0.138 | loss_cen: 0.034 | loss_contra: 3.214
+head count: tensor([ 1712,  1460,  2225, 11862,  1573,  1229])
+epoch=9 mKLD = 1.156 mSIM = 0.403 mNSS = 1.308 bestKLD = 1.151
+LR = [0.0001, 0.0002, 0.001, 0.002, 0.002]
+epoch: 10/15 + 100/1254 | exo_aff_acc: 72.625 | ego_ce: 0.866 | exo_ce: 0.740 | con_loss: 0.196 | loss_cen: 0.034 | loss_contra: 3.382
+epoch: 10/15 + 200/1254 | exo_aff_acc: 73.125 | ego_ce: 0.773 | exo_ce: 0.725 | con_loss: 0.196 | loss_cen: 0.032 | loss_contra: 3.234
+epoch: 10/15 + 300/1254 | exo_aff_acc: 73.958 | ego_ce: 0.935 | exo_ce: 0.653 | con_loss: 0.199 | loss_cen: 0.037 | loss_contra: 3.209
+epoch: 10/15 + 400/1254 | exo_aff_acc: 73.906 | ego_ce: 0.460 | exo_ce: 0.445 | con_loss: 0.103 | loss_cen: 0.033 | loss_contra: 3.245
+epoch: 10/15 + 500/1254 | exo_aff_acc: 73.787 | ego_ce: 1.076 | exo_ce: 0.685 | con_loss: 0.202 | loss_cen: 0.034 | loss_contra: 3.467
+epoch: 10/15 + 600/1254 | exo_aff_acc: 73.438 | ego_ce: 1.137 | exo_ce: 0.809 | con_loss: 0.252 | loss_cen: 0.036 | loss_contra: 3.267
+epoch: 10/15 + 700/1254 | exo_aff_acc: 73.339 | ego_ce: 0.922 | exo_ce: 0.488 | con_loss: 0.145 | loss_cen: 0.034 | loss_contra: 3.332
+epoch: 10/15 + 800/1254 | exo_aff_acc: 73.461 | ego_ce: 0.933 | exo_ce: 0.627 | con_loss: 0.201 | loss_cen: 0.035 | loss_contra: 3.144
+epoch: 10/15 + 900/1254 | exo_aff_acc: 73.271 | ego_ce: 0.653 | exo_ce: 0.632 | con_loss: 0.148 | loss_cen: 0.035 | loss_contra: 3.227
+epoch: 10/15 + 1000/1254 | exo_aff_acc: 73.237 | ego_ce: 0.978 | exo_ce: 0.483 | con_loss: 0.155 | loss_cen: 0.036 | loss_contra: 3.178
+epoch: 10/15 + 1100/1254 | exo_aff_acc: 73.341 | ego_ce: 0.717 | exo_ce: 0.562 | con_loss: 0.186 | loss_cen: 0.034 | loss_contra: 3.199
+epoch: 10/15 + 1200/1254 | exo_aff_acc: 73.302 | ego_ce: 0.735 | exo_ce: 0.523 | con_loss: 0.221 | loss_cen: 0.035 | loss_contra: 2.940
+head count: tensor([ 1733,  1663,  2427, 11270,  1693,  1275])
+epoch=10 mKLD = 1.159 mSIM = 0.402 mNSS = 1.306 bestKLD = 1.151
+LR = [1e-05, 2e-05, 0.0001, 0.0002, 0.0002]
+epoch: 11/15 + 100/1254 | exo_aff_acc: 74.000 | ego_ce: 0.718 | exo_ce: 0.565 | con_loss: 0.102 | loss_cen: 0.035 | loss_contra: 3.210
+epoch: 11/15 + 200/1254 | exo_aff_acc: 75.000 | ego_ce: 1.140 | exo_ce: 0.705 | con_loss: 0.228 | loss_cen: 0.037 | loss_contra: 3.301
+epoch: 11/15 + 300/1254 | exo_aff_acc: 74.667 | ego_ce: 1.148 | exo_ce: 0.495 | con_loss: 0.109 | loss_cen: 0.034 | loss_contra: 3.367
+epoch: 11/15 + 400/1254 | exo_aff_acc: 74.094 | ego_ce: 0.584 | exo_ce: 0.471 | con_loss: 0.165 | loss_cen: 0.038 | loss_contra: 3.098
+epoch: 11/15 + 500/1254 | exo_aff_acc: 73.737 | ego_ce: 0.882 | exo_ce: 0.724 | con_loss: 0.222 | loss_cen: 0.035 | loss_contra: 3.285
+epoch: 11/15 + 600/1254 | exo_aff_acc: 73.781 | ego_ce: 0.570 | exo_ce: 0.512 | con_loss: 0.200 | loss_cen: 0.033 | loss_contra: 3.162
+epoch: 11/15 + 700/1254 | exo_aff_acc: 73.938 | ego_ce: 0.755 | exo_ce: 0.580 | con_loss: 0.263 | loss_cen: 0.033 | loss_contra: 3.098
+epoch: 11/15 + 800/1254 | exo_aff_acc: 74.062 | ego_ce: 0.782 | exo_ce: 0.495 | con_loss: 0.224 | loss_cen: 0.037 | loss_contra: 3.280
+epoch: 11/15 + 900/1254 | exo_aff_acc: 74.007 | ego_ce: 0.722 | exo_ce: 0.775 | con_loss: 0.153 | loss_cen: 0.035 | loss_contra: 3.107
+epoch: 11/15 + 1000/1254 | exo_aff_acc: 74.037 | ego_ce: 0.868 | exo_ce: 0.574 | con_loss: 0.235 | loss_cen: 0.037 | loss_contra: 3.224
+epoch: 11/15 + 1100/1254 | exo_aff_acc: 74.267 | ego_ce: 1.004 | exo_ce: 0.548 | con_loss: 0.191 | loss_cen: 0.034 | loss_contra: 3.126
+epoch: 11/15 + 1200/1254 | exo_aff_acc: 74.156 | ego_ce: 0.613 | exo_ce: 0.517 | con_loss: 0.151 | loss_cen: 0.035 | loss_contra: 3.289
+head count: tensor([ 2002,  1773,  2538, 10498,  1814,  1436])
+epoch=11 mKLD = 1.158 mSIM = 0.403 mNSS = 1.306 bestKLD = 1.151
+LR = [1e-05, 2e-05, 0.0001, 0.0002, 0.0002]
+epoch: 12/15 + 100/1254 | exo_aff_acc: 76.000 | ego_ce: 0.671 | exo_ce: 0.528 | con_loss: 0.186 | loss_cen: 0.034 | loss_contra: 3.128
+epoch: 12/15 + 200/1254 | exo_aff_acc: 74.156 | ego_ce: 0.976 | exo_ce: 0.722 | con_loss: 0.101 | loss_cen: 0.035 | loss_contra: 3.243
+epoch: 12/15 + 300/1254 | exo_aff_acc: 74.000 | ego_ce: 0.658 | exo_ce: 0.504 | con_loss: 0.183 | loss_cen: 0.034 | loss_contra: 3.184
+epoch: 12/15 + 400/1254 | exo_aff_acc: 74.266 | ego_ce: 0.967 | exo_ce: 0.613 | con_loss: 0.239 | loss_cen: 0.034 | loss_contra: 3.090
+epoch: 12/15 + 500/1254 | exo_aff_acc: 74.287 | ego_ce: 0.566 | exo_ce: 0.604 | con_loss: 0.177 | loss_cen: 0.036 | loss_contra: 3.030
+epoch: 12/15 + 600/1254 | exo_aff_acc: 73.792 | ego_ce: 0.923 | exo_ce: 0.558 | con_loss: 0.223 | loss_cen: 0.035 | loss_contra: 3.100
+epoch: 12/15 + 700/1254 | exo_aff_acc: 73.795 | ego_ce: 0.717 | exo_ce: 0.560 | con_loss: 0.175 | loss_cen: 0.033 | loss_contra: 2.972
+epoch: 12/15 + 800/1254 | exo_aff_acc: 73.859 | ego_ce: 0.673 | exo_ce: 0.578 | con_loss: 0.148 | loss_cen: 0.034 | loss_contra: 3.157
+epoch: 12/15 + 900/1254 | exo_aff_acc: 73.660 | ego_ce: 0.779 | exo_ce: 0.575 | con_loss: 0.147 | loss_cen: 0.035 | loss_contra: 3.331
+epoch: 12/15 + 1000/1254 | exo_aff_acc: 73.700 | ego_ce: 0.818 | exo_ce: 0.595 | con_loss: 0.104 | loss_cen: 0.034 | loss_contra: 3.186
+epoch: 12/15 + 1100/1254 | exo_aff_acc: 73.841 | ego_ce: 0.729 | exo_ce: 0.558 | con_loss: 0.222 | loss_cen: 0.037 | loss_contra: 3.168
+epoch: 12/15 + 1200/1254 | exo_aff_acc: 73.932 | ego_ce: 0.611 | exo_ce: 0.396 | con_loss: 0.161 | loss_cen: 0.034 | loss_contra: 3.138
+head count: tensor([ 1941,  1790,  2541, 10716,  1728,  1345])
+epoch=12 mKLD = 1.157 mSIM = 0.403 mNSS = 1.306 bestKLD = 1.151
+LR = [1e-05, 2e-05, 0.0001, 0.0002, 0.0002]
+epoch: 13/15 + 100/1254 | exo_aff_acc: 74.938 | ego_ce: 0.922 | exo_ce: 0.557 | con_loss: 0.147 | loss_cen: 0.035 | loss_contra: 3.308
+epoch: 13/15 + 200/1254 | exo_aff_acc: 75.094 | ego_ce: 0.599 | exo_ce: 0.392 | con_loss: 0.200 | loss_cen: 0.033 | loss_contra: 3.178
+epoch: 13/15 + 300/1254 | exo_aff_acc: 74.312 | ego_ce: 0.951 | exo_ce: 0.672 | con_loss: 0.208 | loss_cen: 0.035 | loss_contra: 3.336
+epoch: 13/15 + 400/1254 | exo_aff_acc: 74.609 | ego_ce: 0.819 | exo_ce: 0.684 | con_loss: 0.136 | loss_cen: 0.035 | loss_contra: 3.120
+epoch: 13/15 + 500/1254 | exo_aff_acc: 74.862 | ego_ce: 0.899 | exo_ce: 0.672 | con_loss: 0.243 | loss_cen: 0.036 | loss_contra: 3.426
+epoch: 13/15 + 600/1254 | exo_aff_acc: 74.854 | ego_ce: 0.578 | exo_ce: 0.445 | con_loss: 0.118 | loss_cen: 0.037 | loss_contra: 3.224
+epoch: 13/15 + 700/1254 | exo_aff_acc: 74.696 | ego_ce: 0.821 | exo_ce: 0.554 | con_loss: 0.152 | loss_cen: 0.035 | loss_contra: 3.278
+epoch: 13/15 + 800/1254 | exo_aff_acc: 75.000 | ego_ce: 0.656 | exo_ce: 0.599 | con_loss: 0.165 | loss_cen: 0.035 | loss_contra: 3.263
+epoch: 13/15 + 900/1254 | exo_aff_acc: 74.979 | ego_ce: 0.863 | exo_ce: 0.532 | con_loss: 0.208 | loss_cen: 0.034 | loss_contra: 3.092
+epoch: 13/15 + 1000/1254 | exo_aff_acc: 74.681 | ego_ce: 0.687 | exo_ce: 0.500 | con_loss: 0.194 | loss_cen: 0.033 | loss_contra: 3.067
+epoch: 13/15 + 1100/1254 | exo_aff_acc: 74.705 | ego_ce: 0.735 | exo_ce: 0.466 | con_loss: 0.204 | loss_cen: 0.035 | loss_contra: 3.010
+epoch: 13/15 + 1200/1254 | exo_aff_acc: 74.672 | ego_ce: 0.850 | exo_ce: 0.608 | con_loss: 0.249 | loss_cen: 0.035 | loss_contra: 3.168
+head count: tensor([ 1954,  1617,  2408, 11041,  1660,  1381])
+epoch=13 mKLD = 1.156 mSIM = 0.404 mNSS = 1.307 bestKLD = 1.151
+LR = [1e-05, 2e-05, 0.0001, 0.0002, 0.0002]
+epoch: 14/15 + 100/1254 | exo_aff_acc: 74.062 | ego_ce: 0.972 | exo_ce: 0.649 | con_loss: 0.130 | loss_cen: 0.033 | loss_contra: 3.458
+epoch: 14/15 + 200/1254 | exo_aff_acc: 74.094 | ego_ce: 0.637 | exo_ce: 0.528 | con_loss: 0.080 | loss_cen: 0.032 | loss_contra: 3.156
+epoch: 14/15 + 300/1254 | exo_aff_acc: 74.396 | ego_ce: 0.980 | exo_ce: 0.622 | con_loss: 0.227 | loss_cen: 0.035 | loss_contra: 3.082
+epoch: 14/15 + 400/1254 | exo_aff_acc: 74.312 | ego_ce: 0.636 | exo_ce: 0.569 | con_loss: 0.225 | loss_cen: 0.036 | loss_contra: 3.278
+epoch: 14/15 + 500/1254 | exo_aff_acc: 74.550 | ego_ce: 0.719 | exo_ce: 0.644 | con_loss: 0.186 | loss_cen: 0.035 | loss_contra: 3.151
+epoch: 14/15 + 600/1254 | exo_aff_acc: 74.323 | ego_ce: 0.902 | exo_ce: 0.771 | con_loss: 0.210 | loss_cen: 0.034 | loss_contra: 3.214
+epoch: 14/15 + 700/1254 | exo_aff_acc: 74.259 | ego_ce: 0.836 | exo_ce: 0.388 | con_loss: 0.284 | loss_cen: 0.035 | loss_contra: 2.937
+epoch: 14/15 + 800/1254 | exo_aff_acc: 74.297 | ego_ce: 1.158 | exo_ce: 0.550 | con_loss: 0.205 | loss_cen: 0.033 | loss_contra: 3.419
+epoch: 14/15 + 900/1254 | exo_aff_acc: 74.368 | ego_ce: 0.897 | exo_ce: 0.503 | con_loss: 0.165 | loss_cen: 0.034 | loss_contra: 3.466
+epoch: 14/15 + 1000/1254 | exo_aff_acc: 74.256 | ego_ce: 1.232 | exo_ce: 0.721 | con_loss: 0.182 | loss_cen: 0.037 | loss_contra: 3.349
+epoch: 14/15 + 1100/1254 | exo_aff_acc: 74.068 | ego_ce: 0.915 | exo_ce: 0.696 | con_loss: 0.172 | loss_cen: 0.034 | loss_contra: 3.179
+epoch: 14/15 + 1200/1254 | exo_aff_acc: 74.125 | ego_ce: 0.840 | exo_ce: 0.568 | con_loss: 0.222 | loss_cen: 0.036 | loss_contra: 3.244
+head count: tensor([ 1855,  1691,  2578, 10881,  1684,  1372])
+epoch=14 mKLD = 1.155 mSIM = 0.404 mNSS = 1.307 bestKLD = 1.151
+LR = [1e-05, 2e-05, 0.0001, 0.0002, 0.0002]
+epoch: 15/15 + 100/1254 | exo_aff_acc: 74.312 | ego_ce: 0.655 | exo_ce: 0.584 | con_loss: 0.242 | loss_cen: 0.034 | loss_contra: 3.226
+epoch: 15/15 + 200/1254 | exo_aff_acc: 73.469 | ego_ce: 0.632 | exo_ce: 0.505 | con_loss: 0.252 | loss_cen: 0.037 | loss_contra: 3.082
+epoch: 15/15 + 300/1254 | exo_aff_acc: 73.000 | ego_ce: 0.541 | exo_ce: 0.584 | con_loss: 0.155 | loss_cen: 0.035 | loss_contra: 3.284
+epoch: 15/15 + 400/1254 | exo_aff_acc: 73.125 | ego_ce: 0.722 | exo_ce: 0.576 | con_loss: 0.259 | loss_cen: 0.035 | loss_contra: 3.265
+epoch: 15/15 + 500/1254 | exo_aff_acc: 73.400 | ego_ce: 0.623 | exo_ce: 0.563 | con_loss: 0.145 | loss_cen: 0.031 | loss_contra: 2.966
+epoch: 15/15 + 600/1254 | exo_aff_acc: 73.260 | ego_ce: 1.010 | exo_ce: 0.655 | con_loss: 0.163 | loss_cen: 0.035 | loss_contra: 3.104
+epoch: 15/15 + 700/1254 | exo_aff_acc: 73.821 | ego_ce: 1.023 | exo_ce: 0.578 | con_loss: 0.199 | loss_cen: 0.035 | loss_contra: 3.033
+epoch: 15/15 + 800/1254 | exo_aff_acc: 73.906 | ego_ce: 1.133 | exo_ce: 0.548 | con_loss: 0.176 | loss_cen: 0.035 | loss_contra: 3.221
+epoch: 15/15 + 900/1254 | exo_aff_acc: 73.931 | ego_ce: 0.559 | exo_ce: 0.573 | con_loss: 0.128 | loss_cen: 0.031 | loss_contra: 3.057
+epoch: 15/15 + 1000/1254 | exo_aff_acc: 73.844 | ego_ce: 0.710 | exo_ce: 0.478 | con_loss: 0.131 | loss_cen: 0.032 | loss_contra: 3.223
+epoch: 15/15 + 1100/1254 | exo_aff_acc: 73.886 | ego_ce: 0.698 | exo_ce: 0.616 | con_loss: 0.203 | loss_cen: 0.035 | loss_contra: 3.253
+epoch: 15/15 + 1200/1254 | exo_aff_acc: 73.880 | ego_ce: 0.852 | exo_ce: 0.567 | con_loss: 0.237 | loss_cen: 0.036 | loss_contra: 3.134
+head count: tensor([ 1900,  1702,  2533, 10816,  1705,  1405])
+epoch=15 mKLD = 1.156 mSIM = 0.404 mNSS = 1.305 bestKLD = 1.151

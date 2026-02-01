@@ -8,7 +8,7 @@ __pycache__/
 .vscode/
 .ipynb_checkpoints/
 
-*.log
+# *.log
 
 
 *.egg-info/
